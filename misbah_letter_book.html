@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Letter Book — For Misbah</title>
+<style>
+  :root{
+    --paper:#fffefb;
+    --ink:#1b1b1b;
+    --accent:#b47bff;
+    --muted:#6b6b6b;
+    font-family: "Georgia", "Times New Roman", serif;
+  }
+  body{margin:0;background:#fbf7f0;color:var(--ink);}
+  .book {
+    width: 900px;max-width:96vw;
+    height: 90vh;max-height:96vh;
+    margin:2vh auto;
+    background:var(--paper);
+    border-radius:12px;
+    box-shadow:0 18px 40px rgba(10,20,40,0.12);
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  header.book-head{display:flex;justify-content:space-between;align-items:center;
+    padding:16px 22px;border-bottom:1px solid rgba(0,0,0,0.06);}
+  .pages{flex:1;position:relative;padding:20px}
+  .page{position:absolute;inset:20px;padding:36px 48px;
+    background:var(--paper);border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,0.06);
+    overflow:auto;opacity:0;pointer-events:none;transition:opacity .3s ease;
+    display:flex;flex-direction:column;align-items:center;}
+  .page.active{opacity:1;pointer-events:auto;}
+  .emoji{font-size:42px;margin-bottom:20px;animation:pop .6s ease}
+  @keyframes pop{0%{transform:scale(.7)}100%{transform:scale(1)}}
+  .letter{flex:1;width:100%;line-height:1.6;font-size:18px;}
+  .letter .to{font-weight:bold;font-size:20px;margin-bottom:18px}
+  .letter .closing{margin-top:24px;align-self:flex-end;font-weight:bold}
+  footer.controls{padding:12px 18px;display:flex;justify-content:space-between;
+    align-items:center;border-top:1px solid rgba(0,0,0,0.06);}
+  .btn{background:#fff;border:1px solid rgba(0,0,0,0.06);
+    padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+  .btn.primary{background:#e9d8ff;color:#2b0b4a}
+  .progress{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="book">
+  <header class="book-head">
+    <h1>Letter Book — For Misbah</h1>
+    <div class="meta" id="meta">Page 1 of 10</div>
+  </header>
+  <div class="pages" id="pages"></div>
+  <footer class="controls">
+    <div>
+      <button class="btn" id="prevBtn">◀ Prev</button>
+      <button class="btn primary" id="nextBtn">Next ▶</button>
+    </div>
+    <div class="progress" id="progTxt">Slide 1 / 10</div>
+  </footer>
+</div>
+
+<script>
+const emojis = ["❤️","💖","💘","💝","💕","💓","💞","💟","🥰","🌹"];
+
+const letters = [
+`Misbah,
+
+I want to begin this book with a confession that has weighed on me for some time. There are moments when I cannot give back the same kind of feelings you are pouring toward me. That does not mean your love is misplaced, nor does it mean I fail to see your worth. It simply means my heart responds in a way I cannot control.
+
+I know it hurts when affection feels one-sided, but please understand: the way I see you, admire you, and care for you is very real. It may not look exactly like what you imagine, but it comes from a sincere place inside me.`,
+`My dear Misbah,
+
+I wish I could shape my emotions to match your hopes. I wish I could flip a switch and mirror every heartbeat you offer. But life does not work that way, and I refuse to lie to you by pretending.
+
+Still, you should know this: even when I cannot give the exact response you long for, I am grateful for you. Your laughter, your presence, your warmth are gifts I do not take lightly. You deserve to be seen, and I do see you.`,
+`Sweet Misbah,
+
+Sometimes I stay quiet not because I do not care, but because I fear my words may hurt you. Yet silence can hurt too, and so I am writing this book as an act of bravery. I want you to know the truth directly from me.
+
+I cannot always be the mirror of your feelings, but I can be the keeper of your trust. I can be the person who never plays with your heart, who tells you the truth even when it is difficult, and who respects your dignity above all.`,
+`My love,
+
+When I see the sparkle in your eyes and sense the depth of your love, I am both honored and humbled. You give freely, and I am touched beyond words. At the same time, I wrestle with the reality that my emotions do not always dance to the same rhythm.
+
+This is not your fault. It is not a flaw in you. It is simply the way our hearts beat differently. And though our music may not always be in harmony, I promise to never walk away without honesty.`,
+`Dear Misbah,
+
+It takes courage to love as openly as you do. That courage deserves acknowledgment, not dismissal. So let me say it clearly: I admire your strength to feel, to give, to hope. You are not weak for caring — you are extraordinary.
+
+If my inability to return certain feelings leaves you disappointed, please forgive me. Forgive me for not being the exact partner you dream of, but know that I still stand here with respect and tenderness for you.`,
+`Lovely Misbah,
+
+There are times I wish I could rewrite my heart to make you happier. But love cannot be commanded, and emotions cannot be forced. What I can give you is something else: stability, honesty, and care that will never be faked.
+
+I love the way you brighten a room, the way you carry yourself with grace, and the way you trust me enough to be vulnerable. Those are treasures to me, and I cherish them deeply.`,
+`My dearest,
+
+I want to remind you of your value. Your worth is not tied to whether my heart matches yours perfectly. Your worth is in your laughter, your kindness, your dreams, and the way you love with so much fire. Do not let my shortcomings make you forget who you are.
+
+If I fall short in giving you what you deserve, I still hope you can carry my respect and my gratitude as proof that you matter beyond measure.`,
+`Misbah,
+
+I know it is confusing to love someone and not always feel that love mirrored back. I can only imagine the questions that race in your mind. Please believe me: you are not lacking, you are not unworthy, and you are not unlovable. My heart’s rhythm is different, but it is not blind to your light.
+
+If ever you choose to step away, I will respect you. And if you choose to stay, I will honor your courage. In either case, my care for you remains true.`,
+`Beloved Misbah,
+
+Love is not always loud. Mine may be quieter, but it still exists. It is in the way I listen when you speak, the way I notice your struggles, the way I wish for your happiness even when I cannot be the full source of it.
+
+You deserve a love that is complete and unhesitant. I may not always offer that, but I can offer truth, loyalty, and gentle affection that does not fade overnight.`,
+`My Misbah,
+
+As I close these pages, I want to make a final promise. I will never fake my emotions with you. I will never reduce your feelings to something small. I will treat you with the respect that your love deserves.
+
+If you ever doubt whether you are loved, remember this: in my own imperfect way, I do love you. I love your spirit, your kindness, your courage. And even if I cannot give every answer you seek, I will always honor you.
+
+With care, with gratitude, and with love — always yours.`
+];
+
+const pagesContainer=document.getElementById('pages');
+letters.forEach((txt,i)=>{
+  const p=document.createElement('article');
+  p.className="page";p.id="page-"+i;
+  p.innerHTML=`
+    <div class="emoji">${emojis[i]}</div>
+    <div class="letter">
+      <div class="to">To Misbah,</div>
+      <div class="body">${txt.replace(/\n/g,"<br><br>")}</div>
+      <div class="closing">Always yours ❤️</div>
+    </div>`;
+  pagesContainer.appendChild(p);
+});
+
+let current=0,total=letters.length;
+function show(n){
+  if(n<0) n=0;if(n>=total) n=total-1;
+  current=n;
+  document.querySelectorAll('.page').forEach((pg,i)=>{
+    pg.classList.toggle('active',i===n);
+  });
+  document.getElementById('meta').textContent=`Page ${n+1} of ${total}`;
+  document.getElementById('progTxt').textContent=`Slide ${n+1} / ${total}`;
+}
+document.getElementById('nextBtn').onclick=()=>show((current+1)%total);
+document.getElementById('prevBtn').onclick=()=>show((current-1+total)%total);
+window.addEventListener('keydown',e=>{
+  if(e.key==="ArrowRight")show(current+1);
+  if(e.key==="ArrowLeft")show(current-1);
+});
+show(0);
+</script>
+</body>
+</html>
