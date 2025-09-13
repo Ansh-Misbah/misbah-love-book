@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apology & Love Book for Misbah 💖</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffe6f0, #fff0f5);
+      font-family: "Comic Sans MS", cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .book {
+      width: 500px;
+      height: 400px;
+      perspective: 1500px;
+      position: relative;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      background: #fff0f5;
+      border: 3px solid #ff99cc;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 30px;
+      box-sizing: border-box;
+      transform-origin: left;
+      transition: transform 1s;
+      overflow-y: auto;
+    }
+
+    .page h2 {
+      color: #ff3399;
+      text-shadow: 1px 1px #fff;
+    }
+
+    .page p {
+      color: #ff4da6;
+      font-size: 18px;
+      line-height: 1.6em;
+      text-align: justify;
+    }
+
+    .controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    button {
+      background: #ff66b2;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      margin: 5px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff3399;
+    }
+
+    /* Envelope */
+    .envelope {
+      display: none;
+      position: relative;
+      width: 260px;
+      height: 160px;
+      margin: 40px auto 0;
+      background: #fff0f5;
+      border: 3px solid #ff99cc;
+      border-radius: 12px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      text-align: center;
+      line-height: 160px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff4da6;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 130px solid transparent;
+      border-right: 130px solid transparent;
+      border-bottom: 80px solid #ff99cc;
+      transition: transform 0.6s ease;
+      transform-origin: top;
+    }
+
+    .envelope-message {
+      display: none;
+      padding: 25px;
+      color: #ff3399;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1.6em;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .open .envelope-message {
+      display: block;
+      line-height: 1.5em;
+    }
+
+    #closed-text {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating hearts */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff66b2;
+      font-size: 20px;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="book" id="book">
+    <div class="page" style="z-index:8">
+      <h2>💌 Page 1</h2>
+      <p>
+        My dearest Misbah,  
+        I want to start by saying I am truly sorry from the bottom of my heart.  
+        You are my world, and I would never do anything to lose you.  
+        Please know that I only want to love and cherish you forever. 🌸
+      </p>
+    </div>
+    <div class="page" style="z-index:7">
+      <h2>💖 Page 2</h2>
+      <p>
+        Misbah, you are my sunshine ☀️ when my world feels dark,  
+        my flower 🌷 when life feels empty,  
+        and my comfort when I feel lost.  
+        I promise I will never hurt you again, because you are too precious. 💞
+      </p>
+    </div>
+    <div class="page" style="z-index:6">
+      <h2>🌸 Page 3</h2>
+      <p>
+        Please don’t ever think I will leave you or betray you.  
+        My heart belongs only to you, Misbah 💕  
+        You are my safe place, my one and only, and I would never risk losing you.  
+        I love you endlessly. 💖
+      </p>
+    </div>
+    <div class="page" style="z-index:5">
+      <h2>💕 Page 4</h2>
+      <p>
+        I know sometimes overthinking makes you doubt,  
+        but let me reassure you:  
+        I am not going anywhere. I am yours forever.  
+        My love is loyal, pure, and only for you, Misbah. 🌷
+      </p>
+    </div>
+    <div class="page" style="z-index:4">
+      <h2>💭 Page 5</h2>
+      <p>
+        Every moment with you feels magical. ✨  
+        I can’t imagine my life without your smile, your voice, your love.  
+        You complete me in ways I never thought possible.  
+        You are my soulmate. 💕
+      </p>
+    </div>
+    <div class="page" style="z-index:3">
+      <h2>🌹 Page 6</h2>
+      <p>
+        Misbah, I loveee youu more than words can say. 💖  
+        I will spend every day proving my love,  
+        giving you my loyalty, my patience, and my care.  
+        You deserve nothing less than my forever devotion. 💕
+      </p>
+    </div>
+    <div class="page" style="z-index:2">
+      <h2>✨ Page 7</h2>
+      <p>
+        So here I am, once again, asking for your forgiveness,  
+        and promising you my forever love.  
+        Let’s move forward, hand in hand,  
+        building a life filled with laughter, kindness, and joy. 💞  
+      </p>
+    </div>
+    <div class="page" style="z-index:1">
+      <h2>🎀 Final Page</h2>
+      <p style="text-align:center">
+        💌 A surprise is waiting for you 💕  
+        Open the envelope below!  
+      </p>
+    </div>
+  </div>
+
+  <!-- Envelope at the end -->
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="envelope-message">
+      💖 Thank you for being in my life 💖
+    </div>
+    <span id="closed-text">Click here for surprise ✨</span>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevPage()">⬅ Previous</button>
+    <button onclick="nextPage()">Next ➡</button>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    const envelope = document.getElementById("envelope");
+    const closedText = document.getElementById("closed-text");
+
+    function showPage(n) {
+      pages.forEach((page, i) => {
+        if (i < n) {
+          page.style.transform = "rotateY(-180deg)";
+        } else {
+          page.style.transform = "rotateY(0)";
+        }
+      });
+
+      if (n === pages.length) {
+        envelope.style.display = "block";
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    envelope.addEventListener("click", () => {
+      envelope.classList.toggle("open");
+      closedText.style.display = "none";
+    });
+
+    // Floating hearts
+    const heartsContainer = document.getElementById("hearts");
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = ["💖","💕","💞","💓","💗","💘"][Math.floor(Math.random()*6)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 7000);
+    }
+    setInterval(createHeart, 600);
+  </script>
+</body>
+</html>
